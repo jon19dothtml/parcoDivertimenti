@@ -16,7 +16,7 @@ public class AreaTematica {
     }
 
     @Override
-    public final boolean equals(Object o) {
+    public boolean equals(Object o) {
         if (!(o instanceof AreaTematica that)) return false;
 
         return Objects.equals(nomeArea, that.nomeArea) && Objects.equals(descrizione, that.descrizione);

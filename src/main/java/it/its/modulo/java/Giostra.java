@@ -1,0 +1,63 @@
+package it.its.modulo.java;
+
+import java.util.Objects;
+
+public class Giostra extends Attrazione {
+    private final int durataGiroMinuti;
+    private final Integer limiteEta;
+
+    public Giostra(String nomeAttrazione, String codiceAttrazione, Tipo tipoAttrazione, int capacitaOraria, int altezzaMinimaCm, boolean aperta, AreaTematica areaTematica, int durataGiroMinuti, Integer limiteEta) {
+        super(nomeAttrazione, codiceAttrazione, tipoAttrazione, capacitaOraria, altezzaMinimaCm, aperta, areaTematica);
+        this.durataGiroMinuti = durataGiroMinuti;
+        this.limiteEta = limiteEta;
+    }
+
+    public int getDurataGiroMinuti() {
+        return durataGiroMinuti;
+    }
+
+    public Integer getLimiteEta() {
+        return limiteEta;
+    }
+
+    @Override
+    public final boolean equals(Object o) {
+        if (!(o instanceof Giostra giostra)) return false;
+
+        return durataGiroMinuti == giostra.durataGiroMinuti && Objects.equals(limiteEta, giostra.limiteEta);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = durataGiroMinuti;
+        result = 31 * result + Objects.hashCode(limiteEta);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Giostra{" +
+                "nomeAttrazione='" + this.getNomeAttrazione() + '\'' +
+                ", codiceAttrazione='" + this.getCodiceAttrazione() + '\'' +
+                ", tipoAttrazione=" + this.getTipoAttrazione() +
+                ", capacitaOraria=" + this.getCapacitaOraria() +
+                ", altezzaMinimaCm=" + this.getAltezzaMinimaCm() +
+                ", aperta=" + this.isAperta() +
+                ", areaTematica" + this.getAreaTematica() +
+                "durataGiroMinuti=" + durataGiroMinuti +
+                ", limiteEta=" + limiteEta +
+                '}';
+    }
+
+    @Override
+    public String getDescrizioneCompleta() {
+        return this.getNomeAttrazione() + " " + this.getCodiceAttrazione();
+    }
+
+    @Override
+    public int calcolaTempoAttesaMedio(int personeInCoda) {
+        return this.getDurataGiroMinuti()*personeInCoda/this.getCapacitaOraria();
+    }
+
+
+}
